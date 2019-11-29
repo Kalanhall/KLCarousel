@@ -1,0 +1,6 @@
+framework module Pods_KLCarousel_Example {
+  umbrella header "Pods-KLCarousel_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

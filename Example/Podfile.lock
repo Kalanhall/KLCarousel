@@ -1,0 +1,25 @@
+PODS:
+  - KLCarousel (1.0.0)
+  - SDWebImage (5.3.2):
+    - SDWebImage/Core (= 5.3.2)
+  - SDWebImage/Core (5.3.2)
+
+DEPENDENCIES:
+  - KLCarousel (from `../`)
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  KLCarousel:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KLCarousel: a7dace97098157d6843fc00a74ff3c6820d2c535
+  SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
+
+PODFILE CHECKSUM: 1898ee494d6f9e6730dc89e6e35465122902284d
+
+COCOAPODS: 1.8.3
