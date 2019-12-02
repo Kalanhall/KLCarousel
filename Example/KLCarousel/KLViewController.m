@@ -34,17 +34,24 @@
     layout.itemVerticalCenter = YES;
     layout.layoutType = KLCarouselTransformLayoutTypeCoverflow;
     self.carousel = [KLCarousel carouselWithFrame:rect layout:layout cell:nil];
+    [self.view addSubview:self.carousel];
+    
+    self.carousel.cellForItemAtIndex = ^(KLCarouselCell * _Nonnull cell, NSArray * _Nonnull images, NSInteger index) {
+          [cell.imageView sd_setImageWithURL:[NSURL URLWithString:images[index]]];
+    };
     
     self.carousel.didSelectedItemCell = ^(NSInteger index) {
         NSLog(@"Index - %@", @(index));
     };
     
-    self.carousel.cellForItemAtIndex = ^(KLCarouselCell * _Nonnull cell, NSInteger index) {
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575035592451&di=bca037f79660b2bf137c3d1cfcee4c66&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-12-01%2F5a20c01220da2.jpg"]];
-    };
     
-    [self.view addSubview:self.carousel];
-    self.carousel.imageURLs = @[@"", @"", @""];
+    // 模拟网络数据源
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.carousel.images = @[@"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2373773158,2067703814&fm=26&gp=0.jpg",
+            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575283456550&di=372bae7542877af3f89f92831c18a196&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F12%2F20161012124101_aX4Cf.png",
+            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575283456550&di=6b426d81feebc8e60676a1caae07450f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F13%2F20161013192818_AHfhJ.jpeg"];
+            [self.carousel reloadData];
+    });
 }
 
 
